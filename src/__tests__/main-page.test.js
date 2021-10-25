@@ -1,21 +1,48 @@
 import React from "react"
-import { render, screen } from "@testing-library/react"
+// import { render, screen } from "@testing-library/react"
+import { rest } from "msw"
+import { setupServer } from "msw/node"
+import {
+  render, 
+  screen,
+  waitForElementToBeRemoved,
+} from "@testing-library/react"
 
 import { MainPage } from "../components/main-page"
 
+const fakeQuotes = [
+  { quote: "Gah, stupid sexy Flanders!"},
+  { quote: "Eat my shorts"},
+  { quote: "Shup up, brain. I got friends now. I don't nedd you anymore"},
+]
+
+const server = setupServer(
+  rest.get("/quotes", (req, res, ctx) => {
+    return res(ctx.json(fakeQuotes))
+  })
+)
+
 beforeEach(() => render (<MainPage />))
 
-describe("Main Page mount", () => {
-    it("must display the main page title", () => {
-      expect(
-        screen.getByRole("heading", { name: /simpsons quotes/i })
-      ).toBeInTheDocument()
-    })
-})
+//Enable API moking before test
+beforeAll(() => server.listen())
+
+//Disable API mocking after the tests are done
+afterAll(() => server.close())
+
+// describe("Main Page mount", () => {
+//   it("must display the main page title", async () => {
+//     expect(
+//       screen.getByRole("heading", { name: /simpsons quotes/i })
+//     ).toBeInTheDocument()
+//     await waitForElementToBeRemoved(() => screen.queryByText(/loading/i))
+//   })
+// })
 
 describe ("Quote List", () => {
   it("must contain quote value", async () => {
     const [firstQuote, secondQuote, thirdQuote] = await screen.findAllByRole("listitem")
+    const [fakeOne, fakeTwo, fakeThird] = fakeQuotes
     expect(firstQuote.textContent).toBe("Gah, stupid sexy Flanders!")
     expect(secondQuote.textContent).toBe("Eat my shorts")
     expect(thirdQuote.textContent).toBe("Shup up, brain. I got friends now. I don't nedd you anymore")

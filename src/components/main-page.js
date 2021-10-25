@@ -1,21 +1,29 @@
-// src/components/main-page.js
-
 import React from "react"
+const getQuotes = () => fetch("/quotes")
 
-// export const MainPage = () => (
-//   <div aria-level="1" role="heading">
-//     Simpsons quotes
-//   </div>
-// )
+export const MainPage = () => {
+  const [quotes, setQuotes] = React.useState([])
+  const [isLoading, setIsLoading] = React.useState(true)
 
-export const MainPage = () => (
-  <>
+  React.useEffect(
+    () => 
+      getQuotes()
+        .then(response => response.json())
+        .then(data => setQuotes(data)),
+    []
+  )
+
+  return (
+    <>
     <h1>Simpsons quotes</h1>
+    
+    {isLoading && <p>Loading</p>}
 
     <ul>
-      <li>Gah, stupid sexy Flanders!</li>
-      <li>Eat my shorts</li>
-      <li>Shup up, brain. I got friends now. I don't nedd you anymore</li>
+      {quotes.map(({quote}) => (
+        <li key={quote}>{quote}</li>
+      ))}
     </ul>
-  </>
-)
+    </>
+  )
+}
