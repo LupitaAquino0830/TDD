@@ -1,6 +1,5 @@
 import React from "react"
 import { getQuotes } from "../services"
-// const getQuotes = () => fetch("/quotes")
 
 export const MainPage = () => {
   const [quotes, setQuotes] = React.useState([])

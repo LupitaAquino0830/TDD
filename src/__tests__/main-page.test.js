@@ -1,5 +1,4 @@
 import React from "react"
-// import { render, screen } from "@testing-library/react"
 import { rest } from "msw"
 import { setupServer } from "msw/node"
 import {
@@ -30,14 +29,6 @@ beforeAll(() => server.listen())
 //Disable API mocking after the tests are done
 afterAll(() => server.close())
 
-// describe("Main Page mount", () => {
-//   it("must display the main page title", async () => {
-//     expect(
-//       screen.getByRole("heading", { name: /simpsons quotes/i })
-//     ).toBeInTheDocument()
-//     await waitForElementToBeRemoved(() => screen.queryByText(/loading/i))
-//   })
-// })
 
 describe ("Quote List", () => {
   it("must contain quote value", async () => {
