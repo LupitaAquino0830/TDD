@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Simpsons Quotes
+
+El proyecto consiste en generar citas aletorias de los diferentes personajes de los simpsons. Este repositorio es un proyecto de la carrera TDD de la universidad [CINDEHU](https://www.cindehu.edu.mx/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

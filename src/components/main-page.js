@@ -17,8 +17,6 @@ export const MainPage = () => {
     <>
     <h1>Simpsons quotes</h1>
     
-    {isLoading && <p>Loading</p>}
-
     <ul>
       {quotes.map(({quote}) => (
         <li key={quote}>{quote}</li>

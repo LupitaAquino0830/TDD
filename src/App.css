@@ -1,5 +1,21 @@
 
-.App {
+body
+{
+  width: 100%;
+  height: 550px;
+  background-image: url(https://hips.hearstapps.com/es.h-cdn.co/fotoes/images/noticias-cine/asi-hubiese-sido-springfield-el-spin-off-de-los-simpson/31368248-1-esl-ES/Asi-hubiese-sido-Springfield-el-spin-off-de-Los-Simpson.png?crop=1xw:0.7962674961119751xh;center,top&resize=1200:*);
+  background-size: cover;
+}
+
+h1
+{
+  color: #fff;
+  text-align: center; 
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 35px;
+}
+
+/* .App {
   text-align: center;
 }
 
@@ -36,4 +52,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
